@@ -1,4 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed} from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { About } from './about';
 import { TwinQuotes } from '../../services/twin-quotes';
@@ -36,11 +37,13 @@ describe('About', () => {
   it ('show quotes after getQuotes (success)', async () => {
       expect(el.textContent).toContain('');
 
-      const button = fixture.nativeElement.querySelector('button');
+     // const button = fixture.nativeElement.querySelector('button');
+      const button1 = fixture.debugElement.query(By.css('.next-quotes'));
 
       vi.useFakeTimers();
 
-      button.dispatchEvent(new Event('click'));
+      // button.dispatchEvent(new Event('click'));
+      button1.triggerEventHandler('click');
       await vi.runAllTimersAsync();
 
        expect(el.textContent).toContain('Test Quotes');

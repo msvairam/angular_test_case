@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeroDashboard, Hero } from './hero-dashboard';
-import { DebugElement } from '@angular/core';
+import { DebugElement, inputBinding } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 describe('HeroDashboard', () => {
@@ -19,10 +19,14 @@ describe('HeroDashboard', () => {
       imports: [HeroDashboard],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(HeroDashboard);
+    fixture = TestBed.createComponent(HeroDashboard, {
+      bindings: [
+        inputBinding('hero', () => expectedHero)
+      ]
+    });
     component = fixture.componentInstance;
 
-    fixture.componentRef.setInput('hero', expectedHero);
+   // fixture.componentRef.setInput('hero', expectedHero);
 
     heroEl = fixture.nativeElement.querySelector('.hero');
     heroDe = fixture.debugElement.query(By.css('.hero'));
@@ -39,13 +43,16 @@ describe('HeroDashboard', () => {
       expect(heroEl.textContent).toContain(expctedVal);
   });
 
-  it ('should raise selected event when clicked (triggerEventHandler)', () => {
+  it ('should raise selected event when clicked (triggerEventHandler)',async () => {
       let selectedHero: Hero | undefined;
       component.selected.subscribe((hero) => selectedHero = hero);
-      heroDe.triggerEventHandler('click');
-
-     
+      heroEl.dispatchEvent(new Event('click'));
 
       expect(selectedHero).toBe(expectedHero);
+
+      // fixture.componentRef.setInput('hero', {...expectedHero, name: 'vairamuthu'});
+
+      await fixture.whenStable();
+
   });
 });

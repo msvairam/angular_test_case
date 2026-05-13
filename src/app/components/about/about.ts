@@ -9,7 +9,7 @@ import { AsyncPipe } from '@angular/common';
   template: `<p class="twain">
       <i>{{ quotes | async }}</i>
   </p>
-  <button type="button" (click)="getQuotes()">Next Quotes</button>
+  <button type="button" class='next-quotes' (click)="getQuotes()">Next Quotes</button>
   <p>Error: {{ errorMessage() }}</p> 
   `,
   styles: ``,

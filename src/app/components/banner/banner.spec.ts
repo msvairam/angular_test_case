@@ -58,4 +58,21 @@ describe('Banner', () => {
     expect(h1.textContent).toEqual('Test Title');
   })
 
+
+  it('validate Form ',() => {
+    const nameControl  = component.bannerForm.get('name');
+
+    nameControl?.setValue('');
+
+    fixture.detectChanges();
+
+    const nameField = fixture.nativeElement.querySelector('input');
+
+    expect(nameField.value).toBe('');
+
+    expect(nameControl?.valid).toBeFalsy();
+    expect(nameControl?.hasError('name')).toBeFalsy();
+
+  })
+
 });

@@ -25,7 +25,7 @@ describe('authGuardGuard', () => {
 
   async function setup(isAuthentication: boolean) {
     const authStore = {
-      isAuthentication: vi.fn().mockReturnValue(isAuthentication),
+      isAuthentication:  vi.fn().mockReturnValue(isAuthentication)
     } as Mocked<AuthStore>;
 
     TestBed.configureTestingModule({
