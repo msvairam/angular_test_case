@@ -51,4 +51,16 @@ describe('About', () => {
 
   });
 
+  it('should be hightlighted',async () => {
+
+    component.highValue.set(true);
+   // fixture.detectChanges();
+   await fixture.whenStable();
+
+    const el  = fixture.debugElement.query(By.css('.highlight'));
+
+    expect(el.nativeElement.textContent).toContain('Highlighted Message');
+    expect(el.nativeElement.style.backgroundColor).toBe('red');
+  })
+
 });

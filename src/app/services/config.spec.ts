@@ -7,7 +7,11 @@ import { firstValueFrom } from 'rxjs';
 describe('config Service',async () => {
 
     TestBed.configureTestingModule({
-        providers: [configData, provideHttpClient(), provideHttpClientTesting ]
+        providers: [
+            configData,
+            provideHttpClient(), 
+            provideHttpClientTesting
+        ]
     });
 
     //const httpTesting = TestBed.inject(HttpTestingController);

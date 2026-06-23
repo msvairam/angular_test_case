@@ -7,10 +7,12 @@ import { httpInterceptor } from '../interceptor/auth.interceptor';
 
 describe('Post Service Validation', () => {
     TestBed.configureTestingModule({
-        providers:[PostData, 
+        providers:[
+            PostData, 
             provideHttpClient(),
             provideHttpClientTesting(),
-            withInterceptors([httpInterceptor])]
+            withInterceptors([httpInterceptor])
+        ]
     });
 
     const httpClient = TestBed.inject(HttpTestingController);
